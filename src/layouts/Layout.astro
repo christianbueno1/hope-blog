@@ -1,22 +1,37 @@
 ---
 import '../styles/global.css';
-const { title = 'Astro Basics' } = Astro.props;
+
+const {
+	title = 'Hope Blog',
+	description = 'Notas y artículos sobre tecnologías de la información: desarrollo, infraestructura y sistemas.',
+} = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+
+		<!-- Favicon: SVG moderno con fallback para navegadores sin soporte (p. ej. Safari) -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="alternate icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+		<!-- Open Graph / redes sociales -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Hope Blog" />
+
 		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-
 <style>
 	html,
 	body {

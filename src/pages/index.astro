@@ -1,11 +1,118 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const categories = [
+	{
+		dir: 'ia-deep-learning/',
+		desc: 'Diseño y funcionamiento de redes neuronales, y metodologías para el entrenamiento de modelos de IA.',
+	},
+	{
+		dir: 'llms-rag/',
+		desc: 'Arquitectura de LLMs (Large Language Models) e implementación de sistemas RAG para conectar IA con datos externos en tiempo real.',
+	},
+	{
+		dir: 'data-science/',
+		desc: 'Análisis de datos, big data, machine learning y su impacto en la toma de decisiones.',
+	},
+	{
+		dir: 'desarrollo-web/',
+		desc: 'Guías y comparativas de frameworks frontend y backend: React, Angular, Django, Node.js.',
+	},
+	{
+		dir: 'sistemas-infraestructura/',
+		desc: 'DevOps, administración de servidores, bases de datos y computación en la nube.',
+	},
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Hope Blog — Tecnología, Software y Ciencias de la Computación"
+	description="Blog de tecnología: IA y deep learning, LLMs y RAG, ciencia de datos, desarrollo web y DevOps. Aprende y mantente al día con la industria tech."
+>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+		.font-display {
+			font-family: 'Space Grotesk', system-ui, sans-serif;
+		}
+		.font-code {
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
+		}
+
+		@keyframes caret-blink {
+			0%, 45% { opacity: 1; }
+			50%, 95% { opacity: 0; }
+			100% { opacity: 1; }
+		}
+		.caret {
+			animation: caret-blink 1.1s steps(1) infinite;
+		}
+		@media (prefers-reduced-motion: reduce) {
+			.caret { animation: none; }
+		}
+	</style>
+
+	<main class="min-h-screen bg-slate-950 text-slate-200" style="font-family: Inter, system-ui, sans-serif;">
+		<div class="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+
+			<!-- Terminal chrome -->
+			<div class="border border-slate-800 bg-slate-900/60">
+				<div class="flex items-center gap-2 border-b border-slate-800 px-4 py-2.5">
+					<span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+					<span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+					<span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+					<span class="font-code ml-2 text-xs text-slate-500">christian@bueno: ~/hope-blog</span>
+				</div>
+				<p class="font-code px-4 py-3 text-sm text-slate-400">
+					<span class="text-teal-400">christian@bueno</span><span class="text-slate-600">:~$</span>
+					<span class="text-slate-300"> cat bienvenida.txt</span><span class="caret text-amber-400">▌</span>
+				</p>
+			</div>
+
+			<h1 class="font-display mt-10 text-3xl font-semibold leading-snug text-slate-100 sm:text-4xl">
+				Hope Blog
+			</h1>
+			<p class="mt-4 max-w-[62ch] text-[1.05rem] leading-relaxed text-slate-300">
+				Un espacio dedicado a la tecnología, el desarrollo de software y las Ciencias de la
+				Computación, pensado para profesionales, estudiantes y entusiastas del sector.
+				El objetivo es simplificar el aprendizaje y mantenerte al día con las tendencias
+				que están transformando el mundo digital, ya sea que estés dando tus primeros
+				pasos en el código o busques optimizar la infraestructura de tus sistemas.
+			</p>
+
+			<!-- Temas del blog como directorio, mismo lenguaje visual que el stack de /about -->
+			<section class="mt-10">
+				<h2 class="font-display text-lg font-semibold text-slate-100">Temas</h2>
+				<div class="font-code mt-4 border border-slate-800 bg-slate-900/40 text-sm">
+					{categories.map((c, i) => (
+						<div class={i !== categories.length - 1 ? 'border-b border-slate-800' : ''}>
+							<p class="px-4 pt-3 text-teal-400">{c.dir}</p>
+							<p class="px-4 pb-3 pl-8 text-slate-400">
+								<span class="text-slate-600">└─ </span>{c.desc}
+							</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- Estado: sin posts todavía -->
+			<div class="mt-10 border border-slate-800 bg-slate-900/40 px-5 py-6">
+				<p class="font-code text-xs text-slate-600">~/posts$ ls</p>
+				<p class="mt-2 text-sm text-slate-400">
+					Todavía no hay artículos publicados. El primero está en camino.
+				</p>
+			</div>
+
+			<nav class="mt-10 flex gap-6 border-t border-slate-800 pt-6">
+				<a
+					href="/about"
+					class="font-code text-sm text-slate-300 underline decoration-slate-700 underline-offset-4 hover:text-teal-400 hover:decoration-teal-400"
+				>
+					sobre-mi →
+				</a>
+			</nav>
+
+		</div>
+	</main>
 </Layout>

@@ -1,0 +1,183 @@
+---
+// src/pages/about.astro
+// Ajusta el import si tu Layout vive en otra ruta o se llama distinto.
+import Layout from '../layouts/Layout.astro';
+
+const stack = [
+  {
+    dir: 'backend/',
+    items: ['python-fastapi', 'dotnet-csharp', 'java-springboot'],
+  },
+  {
+    dir: 'frontend/',
+    items: ['angular', 'blazor'],
+  },
+  {
+    dir: 'infra/',
+    items: ['kvm-libvirt', 'podman', 'linux', 'iac'],
+  },
+  {
+    dir: 'cloud/',
+    items: ['aws'],
+  },
+];
+
+const focus = [
+  'Cursando la certificación RHCSA (Red Hat Certified System Administrator).',
+  'Ingeniería en Computación en ESPOL, Guayaquil, Ecuador.',
+  'Explorando conceptos de ML/AI: redes neuronales, RAG, LLMs.',
+];
+
+const interests = [
+  'Administración de sistemas Linux',
+  'Metodologías de planificación pre-desarrollo web',
+  'Trabajo comunitario y voluntariado',
+];
+
+const contact = [
+  { label: 'email', value: 'chris@deployhero.dev', href: 'mailto:chris@deployhero.dev' },
+  { label: 'site', value: 'christianbueno.work', href: 'https://christianbueno.work' },
+  { label: 'github', value: 'christianbueno1', href: 'https://github.com/christianbueno1' },
+];
+---
+
+<Layout title="Sobre mí — Christian Bueno">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    .font-display {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+    }
+    .font-body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .font-code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    @keyframes caret-blink {
+      0%, 45% { opacity: 1; }
+      50%, 95% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .caret {
+      animation: caret-blink 1.1s steps(1) infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .caret { animation: none; }
+    }
+  </style>
+
+  <main class="font-body min-h-screen bg-slate-950 text-slate-200 selection:bg-teal-400/20 selection:text-teal-200">
+    <div class="mx-auto max-w-5xl px-5 py-10 sm:py-16">
+
+      <!-- Terminal chrome -->
+      <div class="border border-slate-800 bg-slate-900/60">
+        <div class="flex items-center gap-2 border-b border-slate-800 px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="font-code ml-2 text-xs text-slate-500">christian@bueno: ~/about</span>
+        </div>
+        <p class="font-code px-4 py-3 text-sm text-slate-400">
+          <span class="text-teal-400">christian@bueno</span><span class="text-slate-600">:~$</span>
+          <span class="text-slate-300"> whoami</span><span class="caret text-amber-400">▌</span>
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-10 lg:grid-cols-[260px_1fr] lg:gap-14">
+
+        <!-- Sidebar -->
+        <aside class="lg:sticky lg:top-10 lg:self-start">
+          <div class="flex items-center justify-center border border-slate-800 bg-slate-900/60 py-10 lg:py-14">
+            <span class="font-display text-4xl font-semibold text-slate-100">CB</span>
+          </div>
+
+          <h1 class="font-display mt-6 text-2xl font-semibold leading-snug text-slate-100">
+            Christian Bueno
+          </h1>
+          <p class="mt-1 text-sm text-slate-400">Full Stack Developer</p>
+          <p class="font-code mt-3 text-xs text-slate-500">ESPOL · Guayaquil, Ecuador</p>
+
+          <ul class="mt-6 space-y-2 border-t border-slate-800 pt-6">
+            {contact.map((c) => (
+              <li class="font-code flex items-baseline justify-between text-xs">
+                <span class="text-slate-600">{c.label}</span>
+                <a
+                  href={c.href}
+                  target={c.href.startsWith('http') ? '_blank' : undefined}
+                  rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  class="text-slate-300 underline decoration-slate-700 underline-offset-4 hover:text-teal-400 hover:decoration-teal-400"
+                >
+                  {c.value}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+
+        <!-- Main content -->
+        <div class="space-y-14">
+
+          <!-- Bio -->
+          <section>
+            <p class="max-w-[62ch] text-[1.05rem] leading-relaxed text-slate-300">
+              Desarrollo software full stack y me muevo con la misma soltura del lado del
+              backend que en la infraestructura que lo sostiene. Trabajo con Python y FastAPI,
+              .NET/C#, Java con Spring Boot en el servidor, y Angular o Blazor cuando toca
+              construir la interfaz. Fuera del código de aplicación, paso buena parte del
+              tiempo con Linux, KVM/libvirt, Podman e infraestructura como código: entender
+              cómo corre un sistema completo, no solo cómo se ve, es lo que más disfruto.
+            </p>
+          </section>
+
+          <!-- Stack as directory listing -->
+          <section>
+            <h2 class="font-display text-lg font-semibold text-slate-100">Stack</h2>
+            <div class="font-code mt-4 border border-slate-800 bg-slate-900/40 text-sm">
+              {stack.map((group, i) => (
+                <div class={i !== stack.length - 1 ? 'border-b border-slate-800' : ''}>
+                  <p class="px-4 pt-3 text-teal-400">{group.dir}</p>
+                  <ul class="px-4 pb-3 pl-4">
+                    {group.items.map((item) => (
+                      <li class="text-slate-400">
+                        <span class="text-slate-600">├─ </span>{item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- Current focus -->
+          <section>
+            <h2 class="font-display text-lg font-semibold text-slate-100">Enfoque actual</h2>
+            <ul class="mt-4 space-y-3 max-w-[62ch]">
+              {focus.map((f) => (
+                <li class="flex gap-3 text-slate-300">
+                  <span class="mt-1 h-1.5 w-1.5 shrink-0 bg-teal-400"></span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <!-- Interests -->
+          <section>
+            <h2 class="font-display text-lg font-semibold text-slate-100">Intereses</h2>
+            <ul class="mt-4 space-y-3 max-w-[62ch]">
+              {interests.map((it) => (
+                <li class="flex gap-3 text-slate-300">
+                  <span class="mt-1 h-1.5 w-1.5 shrink-0 bg-amber-400"></span>
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

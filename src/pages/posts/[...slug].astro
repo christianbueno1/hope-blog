@@ -1,0 +1,134 @@
+---
+// src/pages/posts/[...slug].astro
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts', ({ data }) => !data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.pubDate.toLocaleDateString('es-EC', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+});
+---
+
+<Layout
+	title={`${post.data.title} — Hope Blog`}
+	description={post.data.description}
+>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+		.font-display {
+			font-family: 'Space Grotesk', system-ui, sans-serif;
+		}
+		.font-code {
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
+		}
+
+		/* Estilos para el contenido markdown renderizado (fuera del scope del componente) */
+		.post-content :global(h2) {
+			font-family: 'Space Grotesk', system-ui, sans-serif;
+			font-size: 1.25rem;
+			font-weight: 600;
+			color: rgb(241 245 249);
+			margin-top: 3rem;
+		}
+		.post-content :global(p) {
+			margin-top: 1.25rem;
+		}
+		.post-content :global(ul),
+		.post-content :global(ol) {
+			margin-top: 1.25rem;
+			padding-left: 1.25rem;
+		}
+		.post-content :global(li) {
+			margin-top: 0.5rem;
+		}
+		.post-content :global(ol) {
+			list-style: decimal;
+		}
+		.post-content :global(ul) {
+			list-style: disc;
+		}
+		.post-content :global(strong) {
+			color: rgb(241 245 249);
+			font-weight: 500;
+		}
+		.post-content :global(a) {
+			color: rgb(45 212 191);
+			text-decoration: underline;
+			text-underline-offset: 4px;
+		}
+		.post-content :global(code) {
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
+			font-size: 0.9em;
+			color: rgb(226 232 240);
+			background: rgb(30 41 59 / 0.6);
+			padding: 0.15em 0.4em;
+			border: 1px solid rgb(30 41 59);
+		}
+		.post-content :global(pre) {
+			margin-top: 1.5rem;
+			padding: 1rem;
+			overflow-x: auto;
+			background: rgb(15 23 42 / 0.6) !important;
+			border: 1px solid rgb(30 41 59);
+		}
+		.post-content :global(pre code) {
+			background: none;
+			border: none;
+			padding: 0;
+		}
+		.post-content :global(hr) {
+			margin-top: 3rem;
+			border-color: rgb(30 41 59);
+		}
+		.post-content :global(img) {
+			margin-top: 1.5rem;
+			width: 100%;
+			height: auto;
+			border: 1px solid rgb(30 41 59);
+		}
+		.post-content :global(figcaption) {
+			margin-top: 0.5rem;
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
+			font-size: 0.8rem;
+			color: rgb(100 116 139);
+		}
+	</style>
+
+	<main class="min-h-screen bg-slate-950 text-slate-200" style="font-family: Inter, system-ui, sans-serif;">
+		<div class="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+
+			<a
+				href="/"
+				class="font-code text-sm text-slate-500 underline decoration-slate-800 underline-offset-4 hover:text-teal-400 hover:decoration-teal-400"
+			>
+				← hope-blog
+			</a>
+
+			<p class="font-code mt-6 text-xs text-slate-600">
+				{post.data.category}/ · {formattedDate}
+			</p>
+
+			<h1 class="font-display mt-3 text-3xl font-semibold leading-snug text-slate-100 sm:text-4xl">
+				{post.data.title}
+			</h1>
+
+			<div class="post-content mt-6 max-w-[62ch] text-lg leading-relaxed text-slate-300">
+				<Content />
+			</div>
+
+		</div>
+	</main>
+</Layout>

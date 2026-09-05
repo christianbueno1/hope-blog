@@ -73,7 +73,7 @@ const categories = [
 			<h1 class="font-display mt-10 text-3xl font-semibold leading-snug text-slate-100 sm:text-4xl">
 				Hope Blog
 			</h1>
-			<p class="mt-4 max-w-[62ch] text-[1.05rem] leading-relaxed text-slate-300">
+			<p class="mt-4 max-w-[62ch] text-lg leading-relaxed text-slate-300">
 				Un espacio dedicado a la tecnología, el desarrollo de software y las Ciencias de la
 				Computación, pensado para profesionales, estudiantes y entusiastas del sector.
 				El objetivo es simplificar el aprendizaje y mantenerte al día con las tendencias
@@ -84,11 +84,11 @@ const categories = [
 			<!-- Temas del blog como directorio, mismo lenguaje visual que el stack de /about -->
 			<section class="mt-10">
 				<h2 class="font-display text-lg font-semibold text-slate-100">Temas</h2>
-				<div class="font-code mt-4 border border-slate-800 bg-slate-900/40 text-sm">
+				<div class="font-code mt-4 border border-slate-800 bg-slate-900/40">
 					{categories.map((c, i) => (
 						<div class={i !== categories.length - 1 ? 'border-b border-slate-800' : ''}>
-							<p class="px-4 pt-3 text-teal-400">{c.dir}</p>
-							<p class="px-4 pb-3 pl-8 text-slate-400">
+							<p class="px-4 pt-3 text-sm text-teal-400">{c.dir}</p>
+							<p class="px-4 pb-3 pl-8 text-base text-slate-400">
 								<span class="text-slate-600">└─ </span>{c.desc}
 							</p>
 						</div>

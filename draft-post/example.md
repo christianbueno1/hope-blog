@@ -5,3 +5,6 @@ wrangler deploy es el comando para publicar un Cloudflare Worker — sube tu có
 To install Wrangler within your Worker project, run:
 ```bash
 pnpm add -D wrangler@latest
+
+```
+Linux Icon by Terence Eden on <a href="https://icon-icons.com/authors/816-terence-eden">Icon-Icons.com</a>

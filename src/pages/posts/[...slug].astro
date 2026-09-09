@@ -1,10 +1,10 @@
 ---
 // src/pages/posts/[...slug].astro
-import { getCollection, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection("posts", ({ data }) => !data.draft);
+	const posts = await getCollection('posts', ({ data }) => !data.draft);
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: { post },
@@ -14,10 +14,10 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
-	day: "numeric",
-	month: "long",
-	year: "numeric",
+const formattedDate = post.data.pubDate.toLocaleDateString('es-EC', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
 });
 ---
 
@@ -26,18 +26,18 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 	description={post.data.description}
 >
 	<style>
-		@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap");
+		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
 
 		.font-display {
-			font-family: "Space Grotesk", system-ui, sans-serif;
+			font-family: 'Space Grotesk', system-ui, sans-serif;
 		}
 		.font-code {
-			font-family: "JetBrains Mono", ui-monospace, monospace;
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
 		}
 
 		/* Estilos para el contenido markdown renderizado (fuera del scope del componente) */
 		.post-content :global(h2) {
-			font-family: "Space Grotesk", system-ui, sans-serif;
+			font-family: 'Space Grotesk', system-ui, sans-serif;
 			font-size: 1.25rem;
 			font-weight: 600;
 			color: rgb(241 245 249);
@@ -70,7 +70,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 			text-underline-offset: 4px;
 		}
 		.post-content :global(code) {
-			font-family: "JetBrains Mono", ui-monospace, monospace;
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
 			font-size: 0.9em;
 			color: rgb(226 232 240);
 			background: rgb(30 41 59 / 0.6);
@@ -83,7 +83,6 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 			overflow-x: auto;
 			background: rgb(15 23 42 / 0.6) !important;
 			border: 1px solid rgb(30 41 59);
-			position: relative;
 		}
 		.post-content :global(pre code) {
 			background: none;
@@ -102,42 +101,15 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 		}
 		.post-content :global(figcaption) {
 			margin-top: 0.5rem;
-			font-family: "JetBrains Mono", ui-monospace, monospace;
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
 			font-size: 0.8rem;
 			color: rgb(100 116 139);
 		}
-		/* copy clipboard button */
-		.post-content :global(.copy-code-button) {
-			position: absolute;
-			top: 0.5rem;
-			right: 0.5rem;
-			font-family: "JetBrains Mono", ui-monospace, monospace;
-			font-size: 0.7rem;
-			color: rgb(148 163 184);
-			background: rgb(30 41 59 / 0.8);
-			border: 1px solid rgb(51 65 85);
-			padding: 0.25rem 0.6rem;
-			cursor: pointer;
-			opacity: 0;
-			transition:
-				opacity 0.15s,
-				color 0.15s,
-				border-color 0.15s;
-		}
-		.post-content :global(pre:hover .copy-code-button) {
-			opacity: 1;
-		}
-		.post-content :global(.copy-code-button:hover) {
-			color: rgb(45 212 191);
-			border-color: rgb(45 212 191);
-		}
 	</style>
 
-	<main
-		class="min-h-screen bg-slate-950 text-slate-200"
-		style="font-family: Inter, system-ui, sans-serif;"
-	>
+	<main class="min-h-screen bg-slate-950 text-slate-200" style="font-family: Inter, system-ui, sans-serif;">
 		<div class="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+
 			<a
 				href="/"
 				class="font-code text-sm text-slate-500 underline decoration-slate-800 underline-offset-4 hover:text-teal-400 hover:decoration-teal-400"
@@ -149,46 +121,14 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 				{post.data.category}/ · {formattedDate}
 			</p>
 
-			<h1
-				class="font-display mt-3 text-3xl font-semibold leading-snug text-slate-100 sm:text-4xl"
-			>
+			<h1 class="font-display mt-3 text-3xl font-semibold leading-snug text-slate-100 sm:text-4xl">
 				{post.data.title}
 			</h1>
 
-			<div
-				class="post-content mt-6 max-w-[62ch] text-lg leading-relaxed text-slate-300"
-			>
+			<div class="post-content mt-6 max-w-[62ch] text-lg leading-relaxed text-slate-300">
 				<Content />
 			</div>
+
 		</div>
 	</main>
-
-	<script>
-		document.querySelectorAll(".post-content pre").forEach((pre) => {
-			const button = document.createElement("button");
-			button.className = "copy-code-button";
-			button.type = "button";
-			button.textContent = "Copy";
-			button.setAttribute("aria-label", "Copy code to clipboard");
-			pre.appendChild(button);
-
-			button.addEventListener("click", async () => {
-				const code = pre.querySelector("code");
-				const text = code
-					? (code.textContent ?? "")
-					: (pre.textContent ?? "");
-
-				try {
-					await navigator.clipboard.writeText(text);
-					button.textContent = "Copied!";
-				} catch {
-					button.textContent = "Error";
-				}
-
-				setTimeout(() => {
-					button.textContent = "Copy";
-				}, 2000);
-			});
-		});
-	</script>
 </Layout>

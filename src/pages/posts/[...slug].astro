@@ -145,6 +145,31 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 			font-size: 0.8rem;
 			color: rgb(100 116 139);
 		}
+
+		/* for markdown tables: */
+		.post-content :global(table) {
+			margin-top: 1.5rem;
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 0.95em;
+			display: block;
+			overflow-x: auto;
+		}
+		.post-content :global(th),
+		.post-content :global(td) {
+			padding: 0.5rem 0.75rem;
+			border: 1px solid rgb(30 41 59);
+			text-align: left;
+		}
+		.post-content :global(th) {
+			font-family: "Space Grotesk", system-ui, sans-serif;
+			font-weight: 600;
+			color: rgb(241 245 249);
+			background: rgb(30 41 59 / 0.4);
+		}
+		.post-content :global(tbody tr:nth-child(even)) {
+			background: rgb(30 41 59 / 0.2);
+		}
 	</style>
 
 	<main

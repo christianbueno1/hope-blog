@@ -726,6 +726,7 @@ touch src/crm_api/customers/presentation/router.py
 
 Y los `__init__.py`:
 
+Este comando crea archivos `__init__.py` en los directorios de manera recursiva para que Python los reconozca como paquetes:
 ```bash
 find src/crm_api -type d -exec touch {}/__init__.py \;
 ```
@@ -961,6 +962,7 @@ presentation/
 
 Aquí sí podemos importar FastAPI:
 
+Con `tags=["customers"]` agrupa y categoriza los endpoints en la documentación automática de OpenAPI/Swagger UI. 
 ```python
 from fastapi import APIRouter
 
@@ -1086,9 +1088,9 @@ infrastructure/
     customer_model.py
 ```
 
-El primero representa el modelo de dominio.
+El primero representa el modelo de dominio. Es el que contiene las reglas de negocio.
 
-El segundo representa el modelo de persistencia.
+El segundo representa el modelo de persistencia. Es el que contiene los detalles de cómo se guarda en la base de datos.
 
 Por ejemplo:
 

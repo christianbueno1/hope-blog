@@ -20,9 +20,12 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 	year: "numeric",
 });
 
+console.log("post.data.image:", post.data.image);
+console.log("post.id:", post.id);
 const ogImage = post.data.image
 	? new URL(`/og/${post.id}.webp`, Astro.site).toString()
 	: undefined; // Head.astro usará el default-og-image.webp
+console.log("ogImage:", ogImage);
 ---
 
 <Layout

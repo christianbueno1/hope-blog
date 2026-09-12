@@ -106,3 +106,7 @@ principal dispara un build (`pnpm build`) y despliegue automáticos. No hace fal
 No es necesario tocar `index.astro` ni `[...slug].astro`: ambos leen el collection
 automáticamente, así que un post nuevo aparece en la lista de la home y genera su
 propia URL (`/posts/<slug>`) solo con crear el archivo.
+
+## OG images
+
+Las imágenes OG (Open Graph) se generan automáticamente para cada post. Se crean en la carpeta `public/og/` y tienen el nombre del ID del post seguido de `.webp`.

@@ -3,11 +3,11 @@ title: How to Build a Generic Reactive Filter in Angular 22 Using Signals
 description: Learn how to create a flexible, reactive filtering system in Angular 22 using Signals and computed properties.
 pubDate: 2023-04-01
 category: "sistemas-web"
+image: "/og/how-to-build-a-generic-reactive-filter-in-angular-22-using-signals.webp"
 ---
 
-# How to Build a Generic Reactive Filter in Angular 22 Using Signals
-
 ![The result table with a search input and status filter pills](./screenshot-full.png)
+
 When building dashboards, data tables, or directory views, one requirement always comes up: **filtering datasets in real time**. 
 
 In older Angular versions, you had to manage streams with `RxJS`, `BehaviorSubject`, and manually handle subscriptions or async pipes. In **Angular 22**, you can build a multi-criteria reactive filter system in just a few lines of clean code using **Signals**, `computed()`, and the modern `@Service()` decorator.

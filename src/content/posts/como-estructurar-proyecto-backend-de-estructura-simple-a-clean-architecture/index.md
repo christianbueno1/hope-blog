@@ -3,9 +3,8 @@ title: "Como estructurar un proyecto backend que pueda crecer: de una estructura
 description: "Guía paso a paso para estructurar un proyecto backend que pueda crecer, desde una estructura simple hasta Clean Architecture, utilizando Python + FastAPI, ASP.NET Core 10 y Spring Boot 4."
 pubDate: "2026-09-09"
 category: "sistemas-arquitectura"
+image: "/og/como-estructurar-proyecto-backend-de-estructura-simple-a-clean-architecture.webp"
 ---
-
-# Cómo estructurar un proyecto backend que pueda crecer: de una estructura simple a Clean Architecture
 
 Cuando comenzamos un proyecto backend es tentador crear unas cuantas carpetas y empezar a programar:
 

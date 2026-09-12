@@ -19,11 +19,18 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-EC", {
 	month: "long",
 	year: "numeric",
 });
+
+const ogImage = post.data.image
+	? new URL(`/og/${post.id}.webp`, Astro.site).toString()
+	: undefined; // Head.astro usará el default-og-image.webp
 ---
 
 <Layout
 	title={`${post.data.title} — Hope Blog`}
 	description={post.data.description}
+	image={ogImage}
+	type="article"
+
 >
 	<style>
 		@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap");

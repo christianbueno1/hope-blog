@@ -34,25 +34,10 @@ const categories = [
 <Layout
 	title="Hope Blog — Tecnología, Software y Ciencias de la Computación"
 	description="Blog de tecnología: IA y deep learning, LLMs y RAG, ciencia de datos, desarrollo web y DevOps. Aprende y mantente al día con la industria tech."
+	type="website"
 >
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
 
-		.font-display {
-			font-family: 'Space Grotesk', system-ui, sans-serif;
-		}
-		.font-code {
-			font-family: 'JetBrains Mono', ui-monospace, monospace;
-		}
-
-		@keyframes caret-blink {
-			0%, 45% { opacity: 1; }
-			50%, 95% { opacity: 0; }
-			100% { opacity: 1; }
-		}
-		.caret {
-			animation: caret-blink 1.1s steps(1) infinite;
-		}
 		@media (prefers-reduced-motion: reduce) {
 			.caret { animation: none; }
 		}
@@ -87,7 +72,7 @@ const categories = [
 			</p>
 
 			<!-- Temas del blog como directorio, mismo lenguaje visual que el stack de /about -->
-			<section class="mt-10">
+			<section class="mt-10" id="temas">
 				<h2 class="font-display text-lg font-semibold text-slate-100">Temas</h2>
 				<div class="font-code mt-4 border border-slate-800 bg-slate-900/40">
 					{categories.map((c, i) => (
@@ -123,16 +108,6 @@ const categories = [
 					</ul>
 				)}
 			</div>
-
-			<nav class="mt-10 flex gap-6 border-t border-slate-800 pt-6">
-				<a
-					href="/about"
-					class="font-code text-sm text-slate-300 underline decoration-slate-700 underline-offset-4 hover:text-teal-400 hover:decoration-teal-400"
-				>
-					sobre-mi →
-				</a>
-			</nav>
-
 		</div>
 	</main>
 </Layout>

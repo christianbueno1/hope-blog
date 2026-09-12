@@ -1,0 +1,29 @@
+---
+const currentPath = Astro.url.pathname;
+
+const isActive = (path: string) => {
+	if (path === '/') return currentPath === '/';
+	return currentPath.startsWith(path);
+};
+
+const linkClass = (path: string) =>
+	isActive(path)
+		? 'text-teal-400'
+		: 'text-slate-400 hover:text-teal-400';
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur-sm">
+	<nav class="mx-auto flex max-w-3xl items-center justify-between px-5 py-4 font-code text-sm">
+		<a href="/" class="text-slate-100 hover:text-teal-400">
+			<span class="text-teal-400">~/</span>hope-blog
+		</a>
+		<div class="flex items-center gap-6">
+			<a href="/#temas" class="text-slate-400 hover:text-teal-400">
+				temas
+			</a>
+			<a href="/about" class={linkClass('/about')}>
+				sobre-mi
+			</a>
+		</div>
+	</nav>
+</header>

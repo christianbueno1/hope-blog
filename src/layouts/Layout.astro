@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Head from '../components/Head.astro';
+import Navbar from '../components/Navbar.astro';
 
 const { title, description, image, type } = Astro.props;
 ---
@@ -10,6 +11,7 @@ const { title, description, image, type } = Astro.props;
 		<Head title={title} description={description} image={image} type={type} />
 	</head>
 	<body>
+		<Navbar />
 		<slot />
 	</body>
 </html>

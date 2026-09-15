@@ -3,7 +3,7 @@ title: How to Build a Generic Reactive Filter in Angular 22 Using Signals
 description: Learn how to create a flexible, reactive filtering system in Angular 22 using Signals and computed properties.
 pubDate: 2023-04-01
 category: "sistemas-web"
-image: "/og/how-to-build-a-generic-reactive-filter-in-angular-22-using-signals.webp"
+image: "/og/angular-reactive-filter-signals.webp"
 ---
 
 ![The result table with a search input and status filter pills](./screenshot-full.png)

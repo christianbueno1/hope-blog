@@ -152,8 +152,27 @@ if [[ ${#ALL_SLUGS[@]} -eq 0 ]]; then
 fi
 
 MISSING_SLUGS=()
+
 for slug in "${ALL_SLUGS[@]}"; do
-	if [[ ! -f "$OG_DIR/$slug.webp" ]]; then
+	index_file="$POSTS_DIR/$slug/index.md"
+	og_file="$OG_DIR/$slug.webp"
+
+	# Falta la imagen OG
+	if [[ ! -f "$og_file" ]]; then
+		MISSING_SLUGS+=("$slug")
+		continue
+	fi
+
+	# Falta index.md
+	if [[ ! -f "$index_file" ]]; then
+		MISSING_SLUGS+=("$slug")
+		continue
+	fi
+
+	# image: no coincide con el slug actual
+	expected_image="/og/$slug.webp"
+
+	if ! grep -qE "^image:[[:space:]]*[\"']?$expected_image[\"']?[[:space:]]*$" "$index_file"; then
 		MISSING_SLUGS+=("$slug")
 	fi
 done

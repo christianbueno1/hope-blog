@@ -45,6 +45,63 @@ EOF
 	exit 1
 }
 
+update_frontmatter_image() {
+	local slug="$1"
+	local index_file="$POSTS_DIR/$slug/index.md"
+	local new_image="/og/$slug.webp"
+
+	if [[ ! -f "$index_file" ]]; then
+		echo "⚠️  No existe el archivo: $index_file"
+		echo "   La imagen fue generada, pero no se actualizó el frontmatter."
+		return 0
+	fi
+
+	local tmp_file
+	tmp_file=$(mktemp)
+
+	awk -v new_image="$new_image" '
+		BEGIN {
+			in_frontmatter = 0
+			image_found = 0
+		}
+
+		# Inicio del frontmatter
+		NR == 1 && $0 == "---" {
+			in_frontmatter = 1
+			print
+			next
+		}
+
+		# Fin del frontmatter
+		in_frontmatter && $0 == "---" {
+			if (!image_found) {
+				print "image: \"" new_image "\""
+			}
+
+			in_frontmatter = 0
+			print
+			next
+		}
+
+		# Actualizar image dentro del frontmatter
+		in_frontmatter && $0 ~ /^[[:space:]]*image:[[:space:]]*/ {
+			print "image: \"" new_image "\""
+			image_found = 1
+			next
+		}
+
+		{
+			print
+		}
+	' "$index_file" > "$tmp_file"
+
+	mv "$tmp_file" "$index_file"
+
+	echo "📝 Frontmatter actualizado:"
+	echo "   $index_file"
+	echo "   image: \"$new_image\""
+}
+
 [[ $# -lt 1 ]] && usage
 
 IMAGE_PATH="$1"
@@ -151,3 +208,5 @@ echo "    Fuente:   $IMAGE_PATH"
 
 SIZE=$(du -h "$OUTPUT_PATH" | cut -f1)
 echo "✅ Listo: $OUTPUT_PATH ($SIZE)"
+
+update_frontmatter_image "$TARGET_SLUG"

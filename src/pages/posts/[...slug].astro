@@ -33,7 +33,6 @@ console.log("ogImage:", ogImage);
 	description={post.data.description}
 	image={ogImage}
 	type="article"
-
 >
 	<style>
 		@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap");
@@ -195,6 +194,20 @@ console.log("ogImage:", ogImage);
 		}
 		.post-content :global(tbody tr:nth-child(even)) {
 			background: rgb(30 41 59 / 0.2);
+		}
+
+		/* blockquote */
+		.post-content :global(blockquote) {
+			margin-top: 1.5rem;
+			padding: 0.75rem 1rem;
+			border-left: 3px solid rgb(45 212 191);
+			background: rgb(15 23 42 / 0.5);
+			color: rgb(148 163 184);
+			font-style: italic;
+		}
+
+		.post-content :global(blockquote p) {
+			margin-top: 0;
 		}
 	</style>
 

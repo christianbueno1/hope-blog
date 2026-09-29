@@ -190,6 +190,10 @@ Para iniciar el entorno por primera vez:
 # 1. Copiar las variables de entorno
 cp .env.db.example .env.db
 
+# darle al script permisos de ejecución
+chmod +x ./scripts/podman/setup-db.sh
+chmod +x ./scripts/podman/teardown-db.sh
+
 # 2. Ejecutar el script de setup
 ./scripts/podman/setup-db.sh
 ```

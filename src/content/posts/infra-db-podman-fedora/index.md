@@ -6,8 +6,6 @@ category: "sistemas-infrastructura"
 image: "/og/infra-db-podman-fedora.webp"
 ---
 
-# Infraestructura Local de Base de Datos con Podman y Shell Scripts en Fedora Workstation
-
 En el entorno de desarrollo moderno, tener una infraestructura local rápida, aislada y fácil de recrear es clave para mantener la productividad. Aunque Docker Compose es una herramienta ampliamente extendida, **Podman** ofrece una alternativa nativa en distribuciones basadas en Red Hat como **Fedora Workstation**, destacando por su arquitectura *rootless* (sin necesidad de demonio como root) y el soporte nativo para el concepto de **Pods** (similar a Kubernetes).
 
 En este artículo, explicaremos cómo automatizar el despliegue de una base de datos PostgreSQL local utilizando Podman, redes dedicadas, volúmenes persistentes y scripts en Bash desacoplados mediante archivos de variables de entorno (`.env`).
